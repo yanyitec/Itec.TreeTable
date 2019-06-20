@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="lib/TreeTable.js"></script>
+        <style type="text/css">
+.collapseButton.expanded{
+    width:20px;height:20px;
+    background-color:blue;
+}
+.collapseButton.collapsed{
+    width:20px;height:20px;
+    background-color:green;
+}
+        </style>
+    </head>
+    <body>
+        <div id="demo"></div>
+        <script>
+            var data = [
+                {
+                    Id:"1",
+                    "Category1Name":"项目工作",
+                    "Category1Id":"Category1-Project",
+                    "Category2Name":"常规项目",
+                    "Category2Id":"Category2-Normal",
+                    "TaskId":1,
+                    "TaskName":"2019年深圳分行常规审计项目A",
+                    "WorkHours":40,
+                    "Remark":"YIY"
+                },
+                {
+                    Id:"2",
+                    "Category1Name":"项目工作",
+                    "Category1Id":"Category1-Project",
+                    "Category2Name":"常规项目",
+                    "Category2Id":"Category2-Normal",
+                    "TaskId":2,
+                    "TaskName":"2019年深圳分行常规审计项目B",
+                    "SubtaskId":5,
+                    "SubtaskName":"2019年深圳分行常规审计项目B-项目工作",
+                    "WorkHours":30,
+                    "Remark":"YIY2"
+                },
+                {
+                    Id:"5",
+                    "Category1Name":"项目工作",
+                    "Category1Id":"Category1-Project",
+                    "Category2Name":"常规项目",
+                    "Category2Id":"Category2-Normal",
+                    "TaskId":2,
+                    "TaskName":"2019年深圳分行常规审计项目B",
+                    "SubtaskId":6,
+                    "SubtaskName":"2019年深圳分行常规审计项目B-预研",
+                    "WorkHours":30,
+                    "Remark":"YIY2"
+                },
+                {
+                    Id:"3",
+                    "Category1Name":"项目工作",
+                    "Category1Id":"Category1-Project",
+                    "Category2Name":"专项项目",
+                    "Category2Id":"Category2-Special",
+                    "TaskId":3,
+                    "TaskName":"2019年长沙分行专项审计项目A",
+                    "WorkHours":30,
+                    "Remark":"YIY3"
+                },
+                {
+                    Id:"4",
+                    "Category1Name":"日常工作",
+                    "Category1Id":"Category1-Dialy",
+                    "Category2Name":"IT项目支持",
+                    "Category2Id":"Category2-ITSupport",
+                    "TaskId":4,
+                    "TaskName":"2019年审计综合管理需求分析",
+                    "WorkHours":30,
+                    "Remark":"YIY4"
+                }
+                
+            ];
+            var opts = {
+                attrs:{"border":1},
+                primary:"Id",
+                columns:[
+                    {
+                        name:"Category1Name"
+                        ,text:"工作分类"
+                        ,colspan:2
+                        ,nodeId:"Category1Id"
+                    },
+                    {
+                        name:"Category2Name"
+                        
+                        ,text:"工作分类"
+                        ,nodeId:"Category2Id"
+                    },
+                    {
+                        name:"TaskName"
+                        ,text:"任务"
+                        ,colspan:2
+                        ,nodeId:"TaskId"
+                    },
+                    {
+                        name:"SubtaskName"
+                        ,text:"任务"
+                        ,nodeId:"SubtaskId"
+                    },
+                    {
+                        name:"id",
+                        visible:false
+                    },
+                    {
+                        name:"WorkHours"
+                        ,text:"工作量"
+                        ,collapsedCell:function(rowData,colName,node){
+                            var datas = this.data();
+                            var whs =0;
+                            for(var i=0,j=datas.length;i<j;i++){
+                                var data = datas[i];
+                                if(data[node.column.nodeId]==node.id){
+                                    whs += data[colName];
+                                }
+                            }
+                            return whs;
+                        }
+                    },
+                    {
+                        name:"Perncent"
+                        ,text:"占比"
+                        ,cell:function(rowData,colName){
+                            return (rowData["WorkHours"]/totalWorkHours);
+                        }
+                        ,collapsedCell:function(rowData,colName,node){
+                            var datas = this.data();
+                            var whs =0;
+                            for(var i=0,j=datas.length;i<j;i++){
+                                var data = datas[i];
+                                if(data[node.column.nodeId]==node.id){
+                                    whs += data["WorkHours"];
+                                }
+                            }
+                            return whs/totalWorkHours;
+                        }
+                    }
+                    ,
+                    {
+                        name:"Remark"
+                        ,text:"说明"
+                        ,cell:"textarea"
+                        ,collapsedCell:function(rowData,colName){
+
+                        }
+                    }
+                ]
+            };
+            var totalWorkHours = 0;
+            for(var i=0,j=data.length;i<j;i++){
+                totalWorkHours+= data[i].WorkHours;
+            }
+            var tt = new TreeTable(opts);
+            document.getElementById("demo").appendChild(tt.render(data));
+        </script>
+		
+		<div class="source" style="BACKGROUND-COLOR: rgb(255,255,255); FONT-FAMILY: 'Courier New','Lucida Console','monospace'; COLOR: rgb(0,0,0)" jquery1254231100687="15">
+<ol>
+<li><span style="COLOR: rgb(0,0,0)">@</span><span style="COLOR: rgb(0,0,255)">echo</span> <span style="COLOR: rgb(0,0,255)">off</span></li>
+<li><span style="COLOR: rgb(0,0,255)">cls</span><span style="COLOR: rgb(0,0,0)">&amp;</span><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.IF_EXIST.cmd by chenall </span><span style="COLOR: rgb(0,0,0)">2009-09-29</span><span style="COLOR: rgb(0,0,0)"> http:</span><span style="COLOR: rgb(0,0,0)">//www.chenall.com</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.功能:</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">. 从环境变量PATH</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">当前目录</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">程序所在目录中查找指定的文件</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">如果找到就显示并返回值</span><span style="COLOR: rgb(0,0,0)">0</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">否则就返回</span><span style="COLOR: rgb(0,0,0)">1</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.使用方法:</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">. 直接复制下面</span><span style="COLOR: rgb(0,128,0)">::模块开始::到::模块结束::之间的代码到你的批处理程序中.然后使用以下命令调用.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">. </span><span style="COLOR: rgb(0,0,255)">CALL</span> <span style="COLOR: rgb(0,0,0)">:IF_EXIST</span><span style="COLOR: rgb(0,0,0)"> xxxx.xxx</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.使用例子:</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">. </span><span style="COLOR: rgb(0,0,255)">CALL</span> <span style="COLOR: rgb(0,0,0)">:IF_EXIST</span><span style="COLOR: rgb(0,0,0)"> find.exe |</span>| <span style="COLOR: rgb(0,0,0)">echo</span><span style="COLOR: rgb(0,0,0)">.find.exe 不存在</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.注:只是简单查找</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">并且不支持查找子目录.主要用于批处理中判断某个外部命是否存在.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">. 实际应用中可以删除</span><span style="COLOR: rgb(0,0,255)">echo</span> <span style="COLOR: rgb(0,0,0)">%~$PATH:1</span><span style="COLOR: rgb(0,0,0)">语句删除输出显示</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">或者在调用时加一个</span><span style="COLOR: rgb(0,0,0)">&gt;</span><span style="COLOR: rgb(0,0,0)">nul</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span><span style="COLOR: rgb(0,0,0)">.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">ECHO</span><span style="COLOR: rgb(0,0,0)">.以下是测试命令.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">ECHO</span><span style="COLOR: rgb(0,0,0)">.查找FIND.EXE</span></li>
+<li><span style="COLOR: rgb(0,0,255)">CALL</span> <span style="COLOR: rgb(0,0,0)">:IF_EXIST</span><span style="COLOR: rgb(0,0,0)"> FIND.EXE |</span>| <span style="COLOR: rgb(0,0,0)">ECHO</span><span style="COLOR: rgb(0,0,0)">.FIND.EXE 不存在</span></li>
+<li><span style="COLOR: rgb(0,0,255)">CALL</span> <span style="COLOR: rgb(0,0,0)">:IF_EXIST</span><span style="COLOR: rgb(0,0,0)"> FIND.EXE </span><span style="COLOR: rgb(0,0,0)">&gt;</span><span style="COLOR: rgb(0,0,0)">nul</span> ||<span style="COLOR: rgb(0,0,0)">echo</span><span style="COLOR: rgb(0,0,0)">.出错了</span><span style="COLOR: rgb(0,0,0)">,</span><span style="COLOR: rgb(0,0,0)">find.exe不存在.</span></li>
+<li><span style="COLOR: rgb(0,0,255)">ECHO</span><span style="COLOR: rgb(0,0,0)">.查找noEXIST.FILE</span></li>
+<li><span style="COLOR: rgb(0,0,255)">CALL</span> <span style="COLOR: rgb(0,0,0)">:IF_EXIST</span><span style="COLOR: rgb(0,0,0)"> noEXIST.FILE |</span>| <span style="COLOR: rgb(0,0,0)">ECHO</span><span style="COLOR: rgb(0,0,0)">.noEXIST.FILE 不存在</span></li>
+<li><span style="COLOR: rgb(0,0,255)">PAUSE</span></li>
+<li><span style="COLOR: rgb(0,0,255)">GOTO</span> <span style="COLOR: rgb(0,0,0)">:EOF</span></li>
+<li>&nbsp;</li>
+<li><span style="COLOR: rgb(0,128,0)">::::::::::::::::::::::::模块开始::::::::::::::::::::::::</span></li>
+<li><span style="COLOR: rgb(0,0,0)">:IF_EXIST</span><span style="COLOR: rgb(0,0,0)"> BY chenall QQ:366840202 </span><span style="COLOR: rgb(0,0,0)">2009-09-29</span></li>
+<li><span style="COLOR: rgb(0,0,255)">SETLOCAL</span><span style="COLOR: rgb(0,0,0)">&amp;PATH </span><span style="COLOR: rgb(0,0,0)">%PATH%</span>;<span style="COLOR: rgb(0,0,0)">%~dp0</span>;<span style="COLOR: rgb(0,0,0)">%cd%</span></li>
+<li><span style="COLOR: rgb(0,0,255)">if</span> <span style="COLOR: rgb(163,21,21)">"%~$PATH:1"</span><span style="COLOR: rgb(0,0,0)">==</span><span style="COLOR: rgb(163,21,21)">""</span><span style="COLOR: rgb(0,0,0)"> exit </span><span style="COLOR: rgb(0,0,0)">/b</span> <span style="COLOR: rgb(0,0,0)">1</span></li>
+<li><span style="COLOR: rgb(0,0,255)">echo</span> <span style="COLOR: rgb(0,0,0)">%~$PATH:1</span></li>
+<li><span style="COLOR: rgb(0,0,0)">exit </span><span style="COLOR: rgb(0,0,0)">/b</span> <span style="COLOR: rgb(0,0,0)">0</span><span style="COLOR: rgb(0,0,0)"> http:</span><span style="COLOR: rgb(0,0,0)">//www.chenall.com</span></li>
+<li><span style="COLOR: rgb(0,128,0)">:::::::::::::::::::::::模块结束:::::::::::::::::::::::::</span></li></ol></div>
+    </body>
+</html>
